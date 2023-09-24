@@ -1,0 +1,12 @@
+[Unit]
+Description=run deltachat xdcstore bot: {{ bot_email }}
+
+[Service]
+ExecStart=/home/{{ unix_user }}/xdcstore/xdcstore start
+EnvironmentFile=/home/{{ unix_user }}/.env
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
+

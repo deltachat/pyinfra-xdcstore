@@ -1,0 +1,5 @@
+venv/
+*.egg-info
+__pycache__
+pyinfra-debug.log
+pyinfra_xdcstore.egg-info/
