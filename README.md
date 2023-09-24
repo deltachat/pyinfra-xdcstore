@@ -13,9 +13,8 @@ you need:
 - SSH access to a linux server
 - an email account for the bot
 - a github.com and/or codeberg.org account so the bot can download .xdc files from there;
-  read more about how to create [a github API token]()
-  or [a codeberg API token]()
-  in the documentation.
+  read more about how to create the neccessary API tokens
+  [in the documentation](https://codeberg.org/webxdc/xdcget#getting-a-codeberg-api-access-token).
 
 
 ## Use it in python code
