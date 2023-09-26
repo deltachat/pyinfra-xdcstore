@@ -6,7 +6,7 @@ set -e
 
 cd xdcget
 git pull --autostash --rebase origin main
-pip install --user .
+pip install --break-system-packages --user .
 
 $HOME/.local/bin/xdcget update
 
