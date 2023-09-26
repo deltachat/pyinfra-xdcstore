@@ -75,15 +75,16 @@ def deploy_xdcstore(unix_user: str,
 
     files.put(
         name=f"upload xstore-update.sh",
-        src=importlib.resources.files(__package__).joinpath("xstore-update.sh").open("rb"),
+        src=importlib.resources.files(__package__).joinpath("xstore-update.sh"),
         dest=f"/home/{unix_user}/.config/systemd/user/",
         user=unix_user,
         mode="0700",
     )
+
     files.template(
         name=f"upload xstore-update systemd unit",
-        src=importlib.resources.files(__package__).joinpath("xstore-update.service").open("rb"),
-        dest=f"/home/{unix_user}/.config/systemd/user/",
+        src=importlib.resources.files(__package__).joinpath("xstore-update.service.j2"),
+        dest=f"/home/{unix_user}/.config/systemd/user/xstore-update.service",
         user=unix_user,
         unix_user=unix_user,
         bot_email=bot_email,
@@ -103,8 +104,8 @@ def deploy_xdcstore(unix_user: str,
 
     files.template(
         name=f"upload xstore systemd unit",
-        src=importlib.resources.files(__package__).joinpath("xstore.service").open("rb"),
-        dest=f"/home/{unix_user}/.config/systemd/user/",
+        src=importlib.resources.files(__package__).joinpath("xstore.service.j2"),
+        dest=f"/home/{unix_user}/.config/systemd/user/xstore.service",
         user=unix_user,
         unix_user=unix_user,
         bot_email=bot_email,
