@@ -27,8 +27,8 @@ def deploy_xdcstore(
     """
 
     clone_xdcget = git.repo(
-        name=f"Pull the xdcget repository",
-        src=f"https://codeberg.org/webxdc/xdcget",
+        name="Pull the xdcget repository",
+        src="https://codeberg.org/webxdc/xdcget",
         dest=f"/home/{unix_user}/xdcget",
         _su_user=unix_user,
         _use_su_login=True,
@@ -53,7 +53,7 @@ def deploy_xdcstore(
     ]
     env = "\n".join(secrets)
     files.put(
-        name=f"upload secrets",
+        name="upload secrets",
         src=StringIO(env),
         dest=f"/home/{unix_user}/.env",
         mode="0600",
@@ -76,7 +76,7 @@ def deploy_xdcstore(
     )
 
     files.put(
-        name=f"upload xstore-update.sh",
+        name="upload xstore-update.sh",
         src=importlib.resources.files(__package__).joinpath("xstore-update.sh"),
         dest=f"/home/{unix_user}/.config/systemd/user/",
         user=unix_user,
@@ -84,7 +84,7 @@ def deploy_xdcstore(
     )
 
     files.template(
-        name=f"upload xstore-update systemd unit",
+        name="upload xstore-update systemd unit",
         src=importlib.resources.files(__package__).joinpath("xstore-update.service.j2"),
         dest=f"/home/{unix_user}/.config/systemd/user/xstore-update.service",
         user=unix_user,
@@ -92,7 +92,7 @@ def deploy_xdcstore(
         bot_email=bot_email,
     )
     systemd.service(
-        name=f"reload and restart xstore-update systemd service",
+        name="reload and restart xstore-update systemd service",
         service="xstore-update.service",
         user_name=unix_user,
         user_mode=True,
@@ -105,7 +105,7 @@ def deploy_xdcstore(
     )
 
     files.template(
-        name=f"upload xstore systemd unit",
+        name="upload xstore systemd unit",
         src=importlib.resources.files(__package__).joinpath("xstore.service.j2"),
         dest=f"/home/{unix_user}/.config/systemd/user/xstore.service",
         user=unix_user,
