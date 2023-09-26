@@ -10,7 +10,7 @@ and [xdcget](https://codeberg.com/webxdc/xdcget).
 To deploy xdcstore and xdcget,
 you need:
 
-- SSH access to a linux server
+- root SSH access to a linux server
 - an email account for the bot
 - a github.com and/or codeberg.org account so the bot can download .xdc files from there;
   read more about how to create the neccessary API tokens
@@ -36,16 +36,25 @@ deploy_xdcstore(
 
 ## Deploy with a one-liner
 
-It can also be used to deploy xdcstore and xdcget with an ad-hoc command like this:
+It can also be used to deploy xdcstore and xdcget like this:
+
 ```
+# install pyinfra, and this module
+git clone https://github.com/deltachat/pyinfra-xdcstore
 pip install --user .
-XDCSTORE_EMAIL=xdcstore@example.org XDCSTORE_PASSWORD=p4ssw0rd pyinfra --ssh-user root -- bomba.testrun.org pyinfra_xdcstore.one_liner
+
+# configure the bot's credentials
+export XDCSTORE_EMAIL=xdcstore@example.org
+export XDCSTORE_PASSWORD=p4ssw0rd
+
+# run the deployment
+pyinfra --ssh-user root -- <your_server> deploy.py
 ```
 
-Additional environment variables you can use:
+Additional environment variables you can (and should) use:
 
 ```
-XDCGET_UNIX_USER        # as which user on your server you want the bot to run
+XDCGET_UNIX_USER        # as which user on your server you want the bot to run; default: xdcstore
 XDCGET_CODEBERG_USER    # the username of a codeberg account
 XDCGET_CODEBERG_TOKEN   # an API token for the codeberg account
 XDCGET_GITHUB_USER      # the username of a github account
