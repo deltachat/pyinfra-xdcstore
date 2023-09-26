@@ -10,7 +10,7 @@ and [xdcget](https://codeberg.com/webxdc/xdcget).
 To deploy xdcstore and xdcget,
 you need:
 
-- root SSH access to a linux server
+- root SSH access to a linux server (tested with Debian 12)
 - an email account for the bot
 - a github.com and/or codeberg.org account so the bot can download .xdc files from there;
   read more about how to create the neccessary API tokens
@@ -19,7 +19,10 @@ you need:
 
 ## Use it in python code
 
-It can be used from the Python code like this:
+This module can be used
+in a [pyinfra deploy.py](https://docs.pyinfra.com/en/2.x/getting-started.html#create-a-deploy) file
+like this:
+
 ```python
 from pyinfra_xdcstore import deploy_xdcstore
 
@@ -34,9 +37,11 @@ deploy_xdcstore(
 )
 ```
 
-## Deploy with a one-liner
+## Deploy with few CLI commands
 
-It can also be used to deploy xdcstore and xdcget like this:
+You can also use this module
+to deploy xdcstore and xdcget
+with these few CLI commands:
 
 ```
 # install pyinfra, and this module
