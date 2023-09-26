@@ -6,13 +6,15 @@ import pyinfra
 from pyinfra.operations import files, systemd, server, git
 
 
-def deploy_xdcstore(unix_user: str,
-                    bot_email: str,
-                    bot_passwd: str,
-                    codeberg_user="",
-                    codeberg_token="",
-                    github_user="",
-                    github_token=""):
+def deploy_xdcstore(
+    unix_user: str,
+    bot_email: str,
+    bot_passwd: str,
+    codeberg_user="",
+    codeberg_token="",
+    github_user="",
+    github_token="",
+):
     """Deploy xdcstore and xdcget to a UNIX user.
 
     :param unix_user: the existing UNIX user of the bot
@@ -124,7 +126,7 @@ def deploy_xdcstore(unix_user: str,
     )
 
 
-if __name__ == "__main__":
+def one_liner():
     unix_user = os.getenv("XDCGET_UNIX_USER", "xdcstore")
     bot_email = os.getenv("XDCSTORE_EMAIL")
     bot_password = os.getenv("XDCSTORE_PASSWORD")
