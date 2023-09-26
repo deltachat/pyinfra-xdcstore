@@ -6,9 +6,9 @@ set -e
 
 cd xdcget
 git pull --autostash --rebase origin main
-pip install --user -e .
+pip install --user .
 
-xdcget update
+$HOME/.local/bin/xdcget update
 
 cd ..
 wget https://download.delta.chat/store/preview/xdcstore-main.tar.gz

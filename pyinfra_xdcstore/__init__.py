@@ -35,7 +35,7 @@ def deploy_xdcstore(unix_user: str,
     if clone_xdcget.changed:
         server.shell(
             name="Compile xdcget",
-            commands=[f"cd /home/{unix_user}/xdcget && pip install --user -e ."],
+            commands=[f"cd /home/{unix_user}/xdcget && pip install --user ."],
             _su_user=unix_user,
             _use_su_login=True,
         )
