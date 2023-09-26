@@ -1,9 +1,39 @@
 import os
+import importlib
 
 import pyinfra
 from pyinfra.facts.server import Users
+from pyinfra.operations import server, files
 
 from pyinfra_xdcstore import deploy_xdcstore
+
+
+def create_unix_user(unix_user):
+    """Create a UNIX user for the bot.
+
+    :param unix_user: the username for the UNIX user
+    """
+    server.user(
+        name=f"Add user {unix_user}",
+        user=unix_user,
+        present=True,
+        shell="/bin/bash",
+        home=f"/home/{unix_user}",
+    )
+
+    server.shell(
+        name=f"enable {unix_user}'s systemd units to auto-start at boot",
+        commands=[f"loginctl enable-linger {unix_user}"],
+    )
+
+    files.put(
+        name=f"upload {unix_user} .profile",
+        src=importlib.resources.files('pyinfra_xdcstore').joinpath("xstore.profile"),
+        dest=f"/home/{unix_user}/.profile",
+        user=unix_user,
+        group=unix_user,
+    )
+
 
 unix_user = os.getenv("XDCGET_UNIX_USER", "xdcstore")
 bot_email = os.getenv("XDCSTORE_EMAIL")
@@ -19,7 +49,7 @@ if bot_password is None:
     pyinfra.logger.error("XDCSTORE_PASSWORD can't be empty.")
 
 if unix_user not in [user for user in pyinfra.host.get_fact(Users)]:
-    pyinfra.logger.error(f"{unix_user} doesn't exist on the server; create it or choose an existing user with XDCGET_UNIX_USER")
+    create_unix_user(unix_user)
 
 deploy_xdcstore(
     unix_user,
