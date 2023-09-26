@@ -39,12 +39,13 @@ deploy_xdcstore(
 It can also be used to deploy xdcstore and xdcget with an ad-hoc command like this:
 ```
 pip install --user .
-XDCSTORE_EMAIL=xdcstore@example.org XDCSTORE_PASSWORD=p4ssw0rd pyinfra --ssh-user root -- example.org pyinfra_xdcstore.deploy_xdcstore
+XDCSTORE_EMAIL=xdcstore@example.org XDCSTORE_PASSWORD=p4ssw0rd pyinfra --ssh-user root -- bomba.testrun.org pyinfra_xdcstore.one_liner
 ```
 
 Additional environment variables you can use:
 
 ```
+XDCGET_UNIX_USER        # as which user on your server you want the bot to run
 XDCGET_CODEBERG_USER    # the username of a codeberg account
 XDCGET_CODEBERG_TOKEN   # an API token for the codeberg account
 XDCGET_GITHUB_USER      # the username of a github account
