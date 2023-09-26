@@ -1,8 +1,6 @@
 import importlib.resources
-import os
 from io import StringIO
 
-import pyinfra
 from pyinfra.operations import files, systemd, server, git
 
 
