@@ -2,7 +2,7 @@
 Description=update xdcstore and xdcget every 15 minutes: {{ bot_email }}
 
 [Service]
-ExecStart=/home/{{ unix_user }}/.config/systemd/user/xstore-update.sh
+ExecStart=/home/{{ unix_user }}/.local/lib/xdcget.venv/bin/xstore-update.sh
 EnvironmentFile=/home/{{ unix_user }}/.env
 WorkingDirectory=/home/{{ unix_user }}
 Restart=always
