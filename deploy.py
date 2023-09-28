@@ -1,3 +1,8 @@
+"""
+This is an example pyinfra deploy file for installing xdcstore and xdcget.
+Its usage is documented in https://github.com/deltachat/pyinfra-xdcstore/#deploy-with-few-cli-commands
+"""
+
 import os
 import importlib
 
