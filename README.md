@@ -65,16 +65,3 @@ XDCGET_CODEBERG_TOKEN   # an API token for the codeberg account
 XDCGET_GITHUB_USER      # the username of a github account
 XDCGET_GITHUB_TOKEN     # an API token for the github account
 ```
-
-**Note:** if you get the following error,
-you just need to re-run the pyinfra command and it works.
-
-```
-    Failed to upload file, retrying: Failure
-    Failed to upload file, retrying: Failure
-    Failed to upload file, retrying: Failure
-    [bomba.testrun.org] Command socket/SSH error: OSError('Failure',)
-    [bomba.testrun.org] Error: executed 2/5 commands
---> pyinfra error: No hosts remaining!
-``` 
-

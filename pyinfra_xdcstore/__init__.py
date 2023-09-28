@@ -83,7 +83,7 @@ def deploy_xdcstore(
     files.put(
         name="upload xstore-update.sh - usually fails on the first try, just re-run the command",
         src=importlib.resources.files(__package__).joinpath("xstore-update.sh"),
-        dest=f"/home/{unix_user}/.config/systemd/user/",
+        dest=f"/home/{unix_user}/.local/lib/xdcget.venv/bin/xstore-update.sh",
         user=unix_user,
         mode="0700",
     )
