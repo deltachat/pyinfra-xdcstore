@@ -1,5 +1,7 @@
 # pyinfra module to deploy xdcstore and xdcget
 
+**This repository was moved to https://codeberg.org/webxdc/pyinfra-xstore**
+
 This module deploys
 [xdcstore](https://codeberg.com/webxdc/xdcstore)
 and [xdcget](https://codeberg.com/webxdc/xdcget).
