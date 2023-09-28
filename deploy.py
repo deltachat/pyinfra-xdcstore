@@ -49,10 +49,15 @@ def main():
     github_user = os.getenv("XDCGET_GITHUB_USER", "")
     github_token = os.getenv("XDCGET_GITHUB_TOKEN", "")
 
+    error = False
     if bot_email is None:
-        pyinfra.logger.error("XDCSTORE_EMAIL can't be empty.")
+        pyinfra.logger.error("[error] XDCSTORE_EMAIL can't be empty.")
+        error = True
     if bot_password is None:
-        pyinfra.logger.error("XDCSTORE_PASSWORD can't be empty.")
+        pyinfra.logger.error("[error] XDCSTORE_PASSWORD can't be empty.")
+        error = True
+    if error:
+        return
 
     if unix_user not in [user for user in pyinfra.host.get_fact(Users)]:
         create_unix_user(unix_user)
