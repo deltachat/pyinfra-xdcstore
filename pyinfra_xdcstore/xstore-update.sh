@@ -4,11 +4,12 @@ trap "systemctl --user start xstore.service" EXIT
 
 set -e
 
+. $HOME/.local/lib/xdcget.venv/bin/activate
 cd xdcget
 git pull --autostash --rebase origin main
-pip install --break-system-packages --user .
+pip install .
 
-$HOME/.local/bin/xdcget update
+$HOME/.local/lib/xdcget.venv/bin/xdcget update
 
 cd ..
 wget https://download.delta.chat/store/preview/xdcstore-main.tar.gz

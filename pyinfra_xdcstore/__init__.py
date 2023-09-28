@@ -33,9 +33,16 @@ def deploy_xdcstore(
     )
 
     if clone_xdcget.changed:
+        server.script(
+            name=f"Setup virtual environment for xdcget",
+            src=importlib.resources.files(__package__).joinpath("setup-venv.sh"),
+            _su_user=unix_user,
+            _use_su_login=True,
+        )
+
         server.shell(
             name="Compile xdcget",
-            commands=[f"cd /home/{unix_user}/xdcget && pip install --break-system-packages --user ."],
+            commands=[f". .local/lib/xdcget.venv/bin/activate && cd /home/{unix_user}/xdcget && pip install ."],
             _su_user=unix_user,
             _use_su_login=True,
         )
